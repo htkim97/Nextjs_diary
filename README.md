@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+  <h1 align="center">🙌 토이프로젝트 회고 다이어리 입니다 🙌</h1>
+  <p align="center">
+ <img src="https://img.shields.io/badge/-NextJS-05122A?style=flat&logo=Next.js&logoColor=ffff"/>
+    <img src="https://img.shields.io/badge/-TypeScript-05122A?style=flat&logo=Typescript&logoColor=blue"/>
+    <img src="https://img.shields.io/badge/-SASS-05122A?style=flat&logo=Sass&logoColor=red"/>
+</p>
 
-## Getting Started
 
-First, run the development server:
+<img width="1014" alt="44444" src="https://github.com/htkim97/Nextjs_diary/assets/52130444/0aea4a2c-5c3a-4af9-8473-d81eadb12b36">
+<br/>
+<br/>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 프로젝트 기간
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2024.03 ~ 진행중
+<br/>
+<br/>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 개요
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+### 하루에 하나씩 일기를 쓰고 그날의 감정을 기록하고, 후에 그 기억을 되새기며 회고할 수 있는 다이어리입니다.
+<br/>
+<br/>
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 기술언어
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- 개발 환경 : visual code
+- 기술 스택 : TypeScript, JavaScript, Tailwind, Sass, NextJS
+- 외부 자원 : Radix UI
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
