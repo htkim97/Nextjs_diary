@@ -30,5 +30,5 @@
 
 - 개발 환경 : visual code
 - 기술 스택 : TypeScript, JavaScript, Tailwind, Sass, NextJS
-- 외부 자원 : Radix UI
+- 외부 자원 : Radix UI, Gpt
 
