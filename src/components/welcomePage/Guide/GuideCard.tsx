@@ -10,7 +10,7 @@ export default function GuideCard({
   return (
     <div className="flex flex-col justify-between">
       <div className="flex justify-center">
-        <Image src={`/img/${path}.png`} alt={""} width='150' height='150'></Image>
+        <Image src={`/img/${path}.png`} alt={""} width='250' height='250'></Image>
       </div>
       <div>
         <div className="font-bold text-2xl text-violet-600 italic mt-5">{menu}</div>
