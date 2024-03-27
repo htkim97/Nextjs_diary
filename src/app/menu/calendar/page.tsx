@@ -1,7 +1,10 @@
-export default function Calendar() {
+import Calendar from "@/components/calendar/claendar";
+
+
+export default function CalendarPage() {
   return(
-    <>
-    캘린더 창
-    </>
+    <div>
+        <Calendar/>
+    </div>
   )
 }
