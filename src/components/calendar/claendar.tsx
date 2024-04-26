@@ -7,6 +7,7 @@ import 'react-calendar/dist/Calendar.css';
 import "./style/style.css"
 
 
+
 type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
@@ -41,7 +42,11 @@ const AddContent = ({date,view}:any) =>{
   return <div className='p-3'>{content}</div>
 }
 
-  
+
+
+const handleDayClick = (value: ValuePiece) => {
+  window.location.href = '/menu/calendar/login'
+};
 
 
   return (
@@ -57,6 +62,7 @@ const AddContent = ({date,view}:any) =>{
           calendarType="gregory" // 일요일 부터 시작
           tileContent={AddContent}
           formatDay={(locale, date) => dayjs(date).format('D')}
+          onClickDay={handleDayClick}
           />
     </>
   );

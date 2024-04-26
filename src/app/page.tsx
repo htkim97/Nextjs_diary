@@ -1,8 +1,9 @@
 'use client'
-import Button from "@/components/welcomePage/button/button";
+import Button from "../components/welcomePage/button/button";
 import Guide from "../components/welcomePage/Guide/Guide";
 import Link from "next/link";
-import Head from "@/components/welcomePage/head/Head";
+import Head from "../components/welcomePage/head/Head";
+import LoginBtn from "../components/welcomePage/login/button"
 export default function Page() {
 
   return (
