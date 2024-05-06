@@ -5,13 +5,13 @@ import Link from "next/link";
 
 export default function Main() {
   const menu =[
-    {
-        href: '/menu/write',
-        // icon: <HomeIcon />,
-        // clickedIcon: <HomeFillIcon />,
-        SelectedFont: <p className="text-violet-700 font-bold">write</p>,
-        font: <p>write</p>
-      },
+    // {
+    //     href: '/menu/write',
+    //     // icon: <HomeIcon />,
+    //     // clickedIcon: <HomeFillIcon />,
+    //     SelectedFont: <p className="text-violet-700 font-bold">write</p>,
+    //     font: <p>write</p>
+    //   },
       {
         href: '/menu/calendar',
         // icon: <SearchIcon />,
