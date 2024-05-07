@@ -2,10 +2,10 @@
 import { useState } from 'react';
 import { Calendar } from 'react-calendar';
 import dayjs from 'dayjs';
-import styled from "styled-components";
 import 'react-calendar/dist/Calendar.css';
 import "./style/style.css";
-import Modal from 'react-modal'; // react-modal 추가
+import Modal from 'react-modal';
+import { TextArea } from '@radix-ui/themes';
 
 type ValuePiece = Date | null;
 
@@ -13,32 +13,39 @@ type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 export default function CalendarMain() {
   const [value, onChange] = useState<Value>(new Date());
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null); // 선택한 날짜 상태 추가
-  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false); // 모달 열림 상태 추가
-
-  const AddContent = ({ date, view }: any) => {
-    const dayList = [
-      '2024-04-10',
-      '2024-04-21',
-      '2024-05-02',
-      '2024-05-14',
-      '2024-05-27',
-      '2024-05-10',
-      '2024-05-21',
-      '2024-05-02',
-      '2024-05-14',
-      '2024-05-27',
-    ];
-    const content = [];
-    if (dayList.find((day) => day === dayjs(date).format('YYYY-MM-DD'))) {
-      content.push(<>😀</>);
-    }
-    return <div className='p-3'>{content}</div>;
-  };
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [memo, setMemo] = useState<string>('');
+  const [selectedEmoji, setSelectedEmoji] = useState<string>('');
 
   const handleDateClick = (date: Date) => {
-    setSelectedDate(date); // 선택한 날짜 업데이트
-    setModalIsOpen(true); // 모달 열기
+    setSelectedDate(date);
+    setModalIsOpen(true);
+    const savedMemo = localStorage.getItem(dayjs(date).format('YYYY-MM-DD'));
+    setMemo(savedMemo || '');
+  };
+
+  const handleSaveMemo = () => {
+    if (selectedDate) {
+      localStorage.setItem(dayjs(selectedDate).format('YYYY-MM-DD'), memo);
+      setModalIsOpen(false);
+    }
+  };
+
+  const CustomDayTile = ({ date, view }: { date: Date, view: string }) => {
+    const formattedDate = dayjs(date).format('YYYY-MM-DD');
+    const memo = localStorage.getItem(formattedDate) || '';
+ 
+
+    return (
+      <div>
+        <div>{memo}</div>
+      </div>
+    );
+  };
+
+  const handleEmojiSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedEmoji(e.target.value);
   };
 
   return (
@@ -50,21 +57,58 @@ export default function CalendarMain() {
         minDetail="month"
         maxDetail="month"
         showNeighboringMonth={false}
-        className="mx-auto w-full text-sm border-b"
+        className="text-sm border-b"
         calendarType="gregory"
-        tileContent={AddContent}
         formatDay={(locale, date) => dayjs(date).format('D')}
-        onClickDay={handleDateClick} // 날짜 클릭 핸들러 추가
+        onClickDay={handleDateClick}
+        tileContent={({ date, view }) => <CustomDayTile date={date} view={view} />}
       />
 
-      {/* 모달 */}
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
-        contentLabel="Example Modal"
+        style={{
+          overlay: {
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          },
+          content: {
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: "450px",
+            height: "300px",
+            borderRadius: "10px",
+            overflow: 'auto',
+            alignItems: 'center',
+            padding: '20px',
+          },
+        }}
       >
-        <div>선택한 날짜: {selectedDate && dayjs(selectedDate).format('YYYY-MM-DD')}</div>
-        <button onClick={() => setModalIsOpen(false)}>닫기</button>
+        <div className='flex flex-col p-2'>
+          <div className='text-xl font-bold'>
+            {selectedDate && dayjs(selectedDate).format('YYYY-MM-DD')}
+          </div>
+          <div className='flex flex-col justify-center items-center mt-8'>
+            <select name="emojis" id="emojis" onChange={handleEmojiSelect}>
+              <option value="😀">😀</option>
+              <option value="🤨">🤨</option>
+              <option value="🥲">🥲</option>
+              <option value="😡">😡</option>
+            </select>
+            <div className='mt-4'>
+              <TextArea
+                value={memo}
+                onChange={(e) => setMemo(e.target.value)}
+                placeholder="오늘의 일기"
+                size="1"
+              />
+            </div>
+            <div className='mt-5 flex gap-10'>
+              <button className="bg-white rounded-xl border-2 border-black p-4 shadow-[0_5px_1px_1px_black] hover:shadow-[0_1px_2px_1px_black] hover:translate-y-1 hover:text-violet-700" onClick={handleSaveMemo}>저장</button>
+              <button className="bg-white rounded-xl border-2 border-black p-4 shadow-[0_5px_1px_1px_black] hover:shadow-[0_1px_2px_1px_black] hover:translate-y-1 hover:text-violet-700" onClick={() => setModalIsOpen(false)}>닫기</button>
+            </div>
+          </div>
+        </div>
       </Modal>
     </>
   );
